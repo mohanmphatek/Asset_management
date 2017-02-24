@@ -480,7 +480,7 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
     if len(args) != 1 {
         return nil, errors.New("init expects one argument, a JSON string with tagged version string")
     }
-    err = json.Unmarshal([]byte(args[0]), &stateArg)
+    err = json.Unmarshal([]byte(args[0]), &stateArg);
     if err != nil {
         return nil, errors.New("Version argument unmarshal failed: " + fmt.Sprint(err))
     }
@@ -652,7 +652,7 @@ func (t *SimpleChaincode) validateInput(args []string) (stateIn AssetState, err 
     jsonData:=args[0]
     assetID = ""
     stateJSON := []byte(jsonData)
-    err = json.Unmarshal(stateJSON, &stateIn)
+    err = json.Unmarshal(stateJSON, &stateIn);
     if err != nil {
         err = errors.New("Unable to unmarshal input JSON data")
         return state, err
@@ -701,7 +701,7 @@ func (t *SimpleChaincode) createOrUpdateAsset(stub shim.ChaincodeStubInterface, 
          stateStub = stateIn // The record that goes into the stub is the one that cme in
     } else {
         // This is an update scenario
-        err = json.Unmarshal(assetBytes, &stateStub)
+        err = json.Unmarshal(assetBytes, &stateStub);
         if err != nil {
             err = errors.New("Unable to unmarshal JSON data from stub")
             return nil, err
